@@ -30,24 +30,31 @@ import mne
 # 2. Add the mkdir
 # 3. include the variable in the return
 
-def get_paths_SELF(disco,layer_script, disco,subj):
+def get_paths_SELF(disco,layer_script,subj):
     # Carpeta general
     
     
     # Carpetas generales de datos
     # Carpeta general
-    datadir = Path(f"{disco}:\\PROYECTO_SELF")
+    
+    datadir = Path("C:/Users/diego/Dropbox/Proyecto Self/datadir_archivos_self_local")
     
     general_datadir = Path(f"{disco}:/MOUS_204/")
 
     # #carpetas generales de datos
-    resting_dir = datadir /"Data_self"/"Data_resting"
-    fif_data = resting_dir /"fif_data" 
-    resting_dir.mkdir(parents=True, exist_ok=True)
-    fif_data.mkdir(parents=True, exist_ok=True)
+    data_task_edf = datadir /"data_task_edf"
+    data_rest_edf = datadir /"data_rest_edf" 
+
+    data_task = datadir /"data_task_edf"
+    data_rest = datadir /"data_rest" 
+
+
+    data_task.mkdir(parents=True, exist_ok=True)
+    data_rest.mkdir(parents=True, exist_ok=True)
+
     # Carpeta de preprocesado
     output_preproc = datadir / "output_preproc"
-    channels_structure_path = general_datadir / "channels_structure"
+    channels_structure_path = datadir / "channels_structure"
 
     preproc_path = output_preproc / f"preproc_{layer_script}"
     preproc_path.mkdir(parents=True, exist_ok=True)
@@ -84,24 +91,30 @@ def get_paths_SELF(disco,layer_script, disco,subj):
     for p in [ACW_path, PLE_path, ISC_path]:
         p.mkdir(parents=True, exist_ok=True)
 
-    # Configuración de MNE
-    mne.utils.set_config('SUBJECTS_DIR', r'\\wsl$\Ubuntu-20.04\usr\local\freesurfer\subjects', set_env=True)
+
 
     return {
         "datadir": datadir,
         "general_datadir": general_datadir,
-        "output_preproc": output_preproc,
 
+        "data_task_edf": data_task_edf,
+        "data_rest_edf": data_rest_edf,
+        "data_task": data_task,
+        "data_rest": data_rest,
+
+        "output_preproc": output_preproc,
         "preproc_path": preproc_path,
         "channels_structure_path": channels_structure_path,
         "epochs_path": epochs_path,
         "ICA_path": ICA_path,
         "epochs_clean_path": epochs_clean_path,
         "evoked_path": evoked_path,
+
         "source_path": source_path,
         "raw_hsp_path": raw_hsp_path,
         "fwd_path": fwd_path,
         "inverse_path": inverse_path,
+
         "output_analysis": output_analysis,
         "analysis_path": analysis_path,
         "ACW_path": ACW_path,
