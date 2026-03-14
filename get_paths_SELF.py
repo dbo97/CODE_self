@@ -65,7 +65,7 @@ def get_paths_SELF(disco,layer_script,subj):
     epochs_matlab_path = preproc_path / f"epochs_matlab_{layer_script}"
     evoked_path = preproc_path / f"evoked_{layer_script}"
     #add mkdir paths
-    for p in [epochs_path, ICA_path, epochs_clean_path,epochs_matlab_path, evoked_path]:
+    for p in [epochs_path, ICA_path, epochs_clean_path,epochs_matlab_path, evoked_path,channels_structure_path]:
         p.mkdir(parents=True, exist_ok=True)
         print(f"✅ Carpeta creada: {p}")
 
