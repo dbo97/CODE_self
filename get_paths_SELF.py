@@ -30,26 +30,30 @@ import mne
 # 2. Add the mkdir
 # 3. include the variable in the return
 
-def get_paths_SELF(disco,layer_script,subj):
+def get_paths_SELF(disco,modality,layer_script,subj):
     # Carpeta general
     
     
     # Carpetas generales de datos
     # Carpeta general
-    
-    data_self = Path("F:\\WORKAREA\\Datos SELF\\")
-    
-    data_task_edf =  data_self / "Self_Exp2" / "Exp2_review" / "Visual_Corregidos" / "ICA" / "EDF"
-    data_rest_edf = data_self /"data_rest_edf" 
 
 
+    general_datadir = Path(f"{disco}:/PROYECTO_SELF/")
+    
+    datadir = Path(f"{disco}:/PROYECTO_SELF/SELF_{modality}")
+    
+    BRAIN_VISION_SELF = datadir/ "BRAIN_VISION_SELF"
     
     
-    datadir = Path(f"{disco}:/PROYECTO_SELF/")
+    export_generic_data = BRAIN_VISION_SELF / f"export_generic_data"
+    
+    
+    # data_task_edf =  data_BV_self / "Self_Exp2" / "Exp2_review" / "visual_Corregidos" / "ICA" / "EDF"
+    # data_rest_edf = data_BV_self /"data_rest_edf" 
 
     # #carpetas generales de datos
 
-
+    
 
     # Carpeta de preprocesado
     output_preproc = datadir / "output_preproc"
@@ -97,11 +101,12 @@ def get_paths_SELF(disco,layer_script,subj):
 
 
 
+
     return {
+        "general_datadir":general_datadir,
         "datadir": datadir,
-        "data_self": data_self,
-        "data_task_edf": data_task_edf,
-        "data_rest_edf": data_rest_edf,
+        "BRAIN_VISION_SELF":BRAIN_VISION_SELF,
+        "export_generic_data": export_generic_data,
         "output_preproc": output_preproc,
         "preproc_path": preproc_path,
         "channels_structure_path": channels_structure_path,
